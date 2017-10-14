@@ -21,5 +21,10 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="antlr-2.7.4" level="project" />
+    <orderEntry type="library" name="chardet-1.0" level="project" />
+    <orderEntry type="library" name="commons-io-2.5" level="project" />
+    <orderEntry type="library" name="cpdetector_1.0.10" level="project" />
+    <orderEntry type="library" name="jargs-1.0" level="project" />
   </component>
 </module>

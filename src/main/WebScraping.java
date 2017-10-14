@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 class WebScraping {
 
-    private static final int THREAD_AMOUNTS = 100; //创建的线程数
+    private static final int THREAD_AMOUNTS = 120; //创建的线程数
 
     /**
      * @param url      用户输入的章节目录的url
@@ -85,6 +85,7 @@ class WebScraping {
             in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             boolean isBelongToList = false;//是否是HTML页面list标签内的内容
             int dtCounter = 0;//dt标签计数器
+            int notRequiredDtCounter = 0;//不需要的dt标签计数器
             String urlMatchString = "<a href=\"/" + novelNumbering + "/";
 
             String line;
@@ -94,11 +95,14 @@ class WebScraping {
                     isBelongToList = true;
                 }
 
-                if (isBelongToList && line.contains("<dt>")) { //匹配list标签内的<dt>标签
+                if (isBelongToList && line.contains("<dt>")) {
                     dtCounter++;
+                    if (line.contains("最新章节") || line.contains("作品相关")) {
+                        notRequiredDtCounter++;
+                    }
                 }
 
-                if (isBelongToList && dtCounter >= 2 && line.contains(urlMatchString)) { //因为第一个<dt>标签是最新章节的段落，所以从第二个开始
+                if (isBelongToList && dtCounter > notRequiredDtCounter && line.contains(urlMatchString)) { //因为第一个<dt>标签是最新章节的段落，所以从第二个开始
                     chapterCounter++;
                     String chapterUrl = urlPrefix + line.substring(line.indexOf(novelNumbering) - 1, line.indexOf("\">"));
                     ncQueue.add(new NovelChapter(chapterCounter, chapterUrl));

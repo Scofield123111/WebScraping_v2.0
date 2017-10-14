@@ -16,7 +16,7 @@ public class RegexProcess {
         Matcher m = p.matcher(arg);
         String content = "";
         while (m.find()) {
-            content = arg.substring(m.start() + beginStringRegex.length() - 1, m.end() - endStringRegex.length());
+            content = arg.substring(m.start() + beginStringRegex.length(), m.end() - endStringRegex.length());
         }
         Pattern p1 = Pattern.compile("<br/>\\s*");
         Matcher m1 = p1.matcher(content);

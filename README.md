@@ -42,6 +42,6 @@ public class UserInterface {
 
 ### 下个版本更新：
 
-1、部署在服务器上
+1、用spring boot重写为web程序，部署在服务器上
 
 2、利用AOP思想将计时分层出来

@@ -21,9 +21,9 @@ java网站爬虫v2.0，可以爬取笔趣读网站上小说的全部章节正文
 
 ### 使用说明:
 
-1.仅限于爬取笔趣读网站上的小说http://www.biqudu.com/
+1、仅限于爬取笔趣读网站上的小说http://www.biqudu.com/
 
-2.用户接口在UserInterface这个类中，可输入小说章节列表的网址，txt文本保存的地址（注意转义）
+2、用户接口在UserInterface这个类中，可输入小说章节列表的网址，txt文本保存的地址（注意转义）
 ```
 public class UserInterface {
     public static void main(String[] args) {
@@ -36,7 +36,12 @@ public class UserInterface {
 }
 ```
 
-3.笔趣读网站上小说章节目录的网址格式：http://www.biqudu.com/0_32/  （其中0_32是小说的编号）。
+3、笔趣读网站上小说章节目录的网址格式：http://www.biqudu.com/0_32/  （其中0_32是小说的编号）。
 
-4.如果不能使用，可能是jar包未导入
+4、如果不能使用，可能是jar包未导入
 
+### 下个版本更新：
+
+1、部署在服务器上
+
+2、利用AOP思想将计时分层出来

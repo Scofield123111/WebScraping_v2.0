@@ -16,11 +16,13 @@ class HtmlParseThread extends Thread {
     private String threadName;
     private ConcurrentLinkedQueue<NovelChapter> inputQueue;
     private ConcurrentLinkedQueue<NovelChapter> resultQueue;
+    private int totalSize;
 
-    HtmlParseThread(String name, ConcurrentLinkedQueue<NovelChapter> inputQueue, ConcurrentLinkedQueue<NovelChapter> resultQueue) {
+    HtmlParseThread(String name, ConcurrentLinkedQueue<NovelChapter> inputQueue, ConcurrentLinkedQueue<NovelChapter> resultQueue, int size) {
         threadName = "线程" + name;
         this.inputQueue = inputQueue;
         this.resultQueue = resultQueue;
+        totalSize = size;
     }
 
     @Override
@@ -32,7 +34,7 @@ class HtmlParseThread extends Thread {
             NovelChapter nc = inputQueue.poll();
 
             String ncUrl = nc.getUrl();
-            System.out.println(threadName + "开始处理： " + ncUrl);
+            System.out.println(threadName + "开始处理：\t" + ncUrl);
 
             try {
                 URL realUrl = new URL(ncUrl);
@@ -50,7 +52,7 @@ class HtmlParseThread extends Thread {
 
                 nc.setContent(RegexProcess.parseString(sb.toString()));
                 resultQueue.add(nc);
-                System.out.println(threadName + "已处理完毕：" + ncUrl + "\t已处理" + resultQueue.size() + "章，剩余" + inputQueue.size() + "章");
+                System.out.println(threadName + "已处理完毕：\t" + ncUrl + "\t共计" + totalSize + "章，已处理" + resultQueue.size() + "章");
 
             } catch (Exception e) {
                 System.out.println("连接超时，请检查网络");

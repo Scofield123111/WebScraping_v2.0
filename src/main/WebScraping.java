@@ -24,9 +24,10 @@ class WebScraping {
         ConcurrentLinkedQueue<NovelChapter> resultQueue = new ConcurrentLinkedQueue<>();
 
         /* 创建线程 */
+        int size = inputQueue.size();
         HtmlParseThread[] threads = new HtmlParseThread[THREAD_AMOUNTS];
         for (int i = 0; i < THREAD_AMOUNTS; i++) {
-            threads[i] = new HtmlParseThread(Integer.toString(i), inputQueue, resultQueue);
+            threads[i] = new HtmlParseThread(Integer.toString(i), inputQueue, resultQueue, size);
             threads[i].start();
         }
 
@@ -41,7 +42,7 @@ class WebScraping {
         }
 
         long lAfter = System.currentTimeMillis();
-        System.out.println("处理网页总计用时：" + (lAfter - lBefore) + "ms");
+        System.out.println("\r\n处理网页总计用时：" + (lAfter - lBefore) + "ms");
 
         /* 输出队列元素排序，并组装 */
         NovelChapter[] ncArr = new NovelChapter[resultQueue.size()];

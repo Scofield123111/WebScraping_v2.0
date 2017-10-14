@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="antlr-2.7.4">
+  <library name="chardet-1.0">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/.idea/bin/antlr-2.7.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/.idea/bin/chardet-1.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
